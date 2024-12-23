@@ -2,6 +2,7 @@
 
 // Importamos todas las imágenes del directorio src/assets/images
 export const images = {
+    logo: require('./mail.png'),
     mail: require('./mail.png'),
     bg1: require('./bg1.jpg'),
     bg2: require('./bg2.webp'),

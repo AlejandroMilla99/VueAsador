@@ -1,17 +1,16 @@
-// src/router/index.js
-import { createRouter, createWebHistory } from 'vue-router'; // Importar las nuevas funciones
-import HomeView from '../views/HomeView.vue';
-import MenuView from '../views/MenuView.vue';
-import ReservationsView from '../views/ReservationsView.vue';
-import GalleryView from '../views/GalleryView.vue';
-import ContactView from '../views/ContactView.vue';
-import AboutView from '../views/AboutView.vue';
+import { createRouter, createWebHistory } from 'vue-router';
 
-// Crear el router sin usar Vue.use()
+// En lugar de importar las vistas directamente, las cargamos de forma perezosa:
+const HomeView = () => import('../views/HomeView.vue');
+const MenuView = () => import('../views/MenuView.vue');
+const ReservationsView = () => import('../views/ReservationsView.vue');
+const GalleryView = () => import('../views/GalleryView.vue');
+const ContactView = () => import('../views/ContactView.vue');
+const AboutView = () => import('../views/AboutView.vue');
+
 const router = createRouter({
-  history: createWebHistory('/'), // Usar createWebHistory para Vue 3
+  history: createWebHistory('/'),
   routes: [
-    { path: '', name: 'Home-View', component: HomeView },
     { path: '/', name: 'Home-View', component: HomeView },
     { path: '/home', name: 'Home-View', component: HomeView },
     { path: '/menu', name: 'Menu-View', component: MenuView },
