@@ -9,11 +9,12 @@ const ContactView = () => import('../views/ContactView.vue');
 const AboutView = () => import('../views/AboutView.vue');
 
 const router = createRouter({
-  history: createWebHistory('/'),
+  history: createWebHistory('/VueAsador'),
   routes: [
-    { path: '/', name: 'Home-View', component: HomeView },
-    { path: '/home', name: 'Home-View', component: HomeView },
-    { path: '/menu', name: 'Menu-View', component: MenuView },
+    { path: '/', name: 'HomeView', component: HomeView },
+    { path: '/VueAsador', name: 'HomeView', component: HomeView },
+    { path: '/home', name: 'HomeView', component: HomeView },
+    { path: '/menu', name: 'MenuView', component: MenuView },
     { path: '/reservations', name: 'Reservations', component: ReservationsView },
     { path: '/gallery', name: 'Gallery', component: GalleryView },
     { path: '/contact', name: 'Contact', component: ContactView },
