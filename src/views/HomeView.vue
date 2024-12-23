@@ -18,7 +18,7 @@
   
   <script>
   import images from "../assets/images/images.js";
-  
+   
   export default {
     data() {
       return {
