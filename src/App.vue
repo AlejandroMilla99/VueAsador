@@ -1,8 +1,15 @@
 <template>
   <div id="app">
-    <AppNavbar />
-    <router-view />
-    <AppFooter />
+    <header class="fade-in">
+      <AppNavbar />
+    </header>
+    <main class="fade-in">
+      <!-- Deja que el contenido del router-view ocupe todo el espacio necesario -->
+      <router-view />
+    </main>
+    <footer class="fade-in">
+      <AppFooter />
+    </footer>
   </div>
 </template>
 
@@ -18,6 +25,29 @@ export default {
 };
 </script>
 
-<style>
-@import "./assets/styles/main.scss";
+<style lang="scss">
+@use "./assets/styles/main.scss" as *;
+
+/* Añadimos ajustes */
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  z-index: 10; /* Mantén el header por encima del slider */
+  position: relative;
+}
+
+main {
+  flex: 1;
+  position: relative; /* Importante para manejar componentes como el slider */
+  overflow: hidden; /* Asegura que el contenido no se desborde */
+}
+
+footer {
+  z-index: 10; /* Mantén el footer por encima del slider */
+  position: relative;
+}
 </style>

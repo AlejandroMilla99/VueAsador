@@ -1,22 +1,25 @@
-import Vue from "vue";
-import Router from "vue-router";
-import Home from "../views/Home.vue";
-import Menu from "../views/Menu.vue";
-import Reservations from "../views/Reservations.vue";
-import Gallery from "../views/Gallery.vue";
-import Contact from "../views/Contact.vue";
-import About from "../views/About.vue";
+// src/router/index.js
+import { createRouter, createWebHistory } from 'vue-router'; // Importar las nuevas funciones
+import HomeView from '../views/HomeView.vue';
+import MenuView from '../views/MenuView.vue';
+import ReservationsView from '../views/ReservationsView.vue';
+import GalleryView from '../views/GalleryView.vue';
+import ContactView from '../views/ContactView.vue';
+import AboutView from '../views/AboutView.vue';
 
-Vue.use(Router);
-
-export default new Router({
-  mode: "history",
+// Crear el router sin usar Vue.use()
+const router = createRouter({
+  history: createWebHistory('/'), // Usar createWebHistory para Vue 3
   routes: [
-    { path: "/", name: "Home", component: Home },
-    { path: "/menu", name: "Menu", component: Menu },
-    { path: "/reservations", name: "Reservations", component: Reservations },
-    { path: "/gallery", name: "Gallery", component: Gallery },
-    { path: "/contact", name: "Contact", component: Contact },
-    { path: "/about", name: "About", component: About },
+    { path: '', name: 'Home-View', component: HomeView },
+    { path: '/', name: 'Home-View', component: HomeView },
+    { path: '/home', name: 'Home-View', component: HomeView },
+    { path: '/menu', name: 'Menu-View', component: MenuView },
+    { path: '/reservations', name: 'Reservations', component: ReservationsView },
+    { path: '/gallery', name: 'Gallery', component: GalleryView },
+    { path: '/contact', name: 'Contact', component: ContactView },
+    { path: '/about', name: 'About', component: AboutView },
   ],
 });
+
+export default router;

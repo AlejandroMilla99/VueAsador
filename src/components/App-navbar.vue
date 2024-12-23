@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar">
     <ul>
-      <li><router-link to="/">Inicio</router-link></li>
+      <li><router-link to="/home">Inicio</router-link></li>
       <li><router-link to="/menu">Menú</router-link></li>
       <li><router-link to="/reservations">Reservas</router-link></li>
       <li><router-link to="/gallery">Galería</router-link></li>
