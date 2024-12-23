@@ -6,9 +6,13 @@ module.exports = defineConfig({
   css: {
     loaderOptions: {
       sass: {
-        additionalData: `
-          @use "@/assets/styles/main.scss";
-        `
+        // Configuración para usar la API moderna de Sass
+        implementation: require('sass'),
+        sassOptions: {
+          api: 'modern'
+        },
+        // Cargar tu archivo SCSS globalmente
+        additionalData: `@use "@/assets/styles/main.scss" as *;`
       }
     }
   }
