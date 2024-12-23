@@ -153,23 +153,6 @@ button {
   padding: 4rem 1rem;
 }
 
-.hero {
-  background-image: url('assets/hero-bg.jpg');
-  background-size: cover;
-  background-position: center;
-  color: #fff;
-  text-align: center;
-  padding: 5rem 1rem;
-
-  h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-  }
-
-  p {
-    font-size: 1.25rem;
-  }
-}
 
 /* === Animaciones === */
 .fade-in {
@@ -248,18 +231,6 @@ button {
 @media (max-width: 768px) {
   h1 {
     font-size: 2rem;
-  }
-
-  .hero {
-    padding: 3rem 1rem;
-
-    h1 {
-      font-size: 2.5rem;
-    }
-
-    p {
-      font-size: 1rem;
-    }
   }
 
   .container {
