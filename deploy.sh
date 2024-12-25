@@ -9,20 +9,15 @@ npm run build
 # navigate into the build output directory
 cd dist
 
-# if you are deploying to a custom domain
-# echo 'www.example.com' > CNAME
+# copy index.html to 404.html for GitHub Pages SPA routing
+cp index.html 404.html
 
+# initialize a new Git repo
 git init
 git add -A
 git commit -m 'deploy'
 
-# if you are deploying to https://<USERNAME>.github.io
-# git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git main
-
-# if you are deploying to https://<USERNAME>.github.io/<REPO>
+# push to GitHub Pages
  git push -f  https://github.com/alejandromilla99/VueAsador.git main:gh-pages
-
- #dominio propio
- # echo 'www.asadorguadalmina.com' > CNAME
 
 cd -
