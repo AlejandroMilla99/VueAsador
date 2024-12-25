@@ -18,32 +18,42 @@ module.exports = defineConfig({
     module: {
       rules: [
         {
-          test: /\.(png|jpe?g|gif|svg)$/i,
+          test: /\.(png|jpe?g|gif|svg|webp)$/i, // Incluye todas las extensiones necesarias
           use: [
-            'file-loader', // Puede usar file-loader si quieres mantener la funcionalidad de archivo
+            {
+              loader: 'file-loader',
+              options: {
+                name: '[name].[hash:8].[ext]', // Mantiene el nombre original con un hash para evitar colisiones
+                outputPath: 'img', // Mueve las imágenes procesadas a la carpeta dist/img
+                publicPath: '/VueAsador/img', // Ajusta la ruta pública para GitHub Pages
+              },
+            },
             {
               loader: 'image-webpack-loader',
               options: {
-                bypassOnDebug: true, // para evitar que el loader se ejecute en modo de desarrollo
-                disable: process.env.NODE_ENV === 'development', // Deshabilitar en desarrollo
+                bypassOnDebug: true,
+                disable: process.env.NODE_ENV === 'development',
                 mozjpeg: {
                   progressive: true,
-                  quality: 75, // Ajusta la calidad para JPEG
+                  quality: 75,
                 },
                 optipng: {
-                  optimizationLevel: 7, // Nivel de optimización para PNG
+                  optimizationLevel: 7,
                 },
                 pngquant: {
-                  quality: [0.65, 0.90], // Rango de calidad para PNG
-                  speed: 4, // Velocidad de la optimización de PNG
+                  quality: [0.65, 0.90],
+                  speed: 4,
                 },
                 gifsicle: {
-                  interlaced: false, // No usar interlaced para GIF
+                  interlaced: false,
                 },
                 svgo: {
                   plugins: [
-                    { removeViewBox: false }, // No eliminar la caja de vista para SVG
+                    { removeViewBox: false },
                   ],
+                },
+                webp: {
+                  quality: 75,
                 },
               },
             },
