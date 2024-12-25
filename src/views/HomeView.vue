@@ -11,11 +11,11 @@
   
       <!-- Botón centrado -->
       <button class="reserve-button">
-        <i class="fas fa-phone"></i> Reserva Ya
+        <i class="fas fa-phone"></i>{{ $t('homepage.book') }}
       </button>
     </div>
   </template>
-  
+   
   <script>
   import images from "../assets/images/images.js";
    

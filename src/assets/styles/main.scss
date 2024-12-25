@@ -28,6 +28,16 @@ header {
   padding: 1rem 0;
 }
 
+li {
+  background-color: $primary-color;
+  color: #fff;
+  padding: 1rem 0;
+}
+
+ul {
+  gap: 30%;
+}
+
 main {
   flex: 1; /* Se asegura de que el contenido principal ocupe el espacio restante */
 }
@@ -213,6 +223,37 @@ button {
 .reserve-button i {
   font-size: 1.5rem;
 }
+
+.language-switcher {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  left: 325px;
+  position: relative;
+
+  button {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+
+    &.active {
+      color: $secondary-color; // Color dorado para el botón seleccionado
+    }
+
+    &:hover {
+      color: $secondary-color;
+    }
+  }
+
+  span {
+    color: white;
+  }
+}
+
 
 //Reutil
 
