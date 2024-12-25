@@ -18,16 +18,16 @@ module.exports = defineConfig({
     module: {
       rules: [
         {
-          test: /\.(png|jpe?g|gif|svg|webp)$/i, // Incluye todas las extensiones necesarias
+          test: /\.(png|jpe?g|gif|svg|webp)$/i, // Extensiones soportadas
+          type: 'asset/resource', // Usa el nuevo sistema de Webpack 5 para recursos
+          generator: {
+            filename: 'img/[name].[hash:8][ext]', // Rutas de salida personalizadas
+          },
+        },
+        {
+          test: /\.(png|jpe?g|gif|svg|webp)$/i,
+          enforce: 'pre', // Procesa imágenes antes de que lleguen a otros loaders
           use: [
-            {
-              loader: 'file-loader',
-              options: {
-                name: '[name].[hash:8].[ext]', // Mantiene el nombre original con un hash para evitar colisiones
-                outputPath: 'img', // Mueve las imágenes procesadas a la carpeta dist/img
-                publicPath: '/VueAsador/img', // Ajusta la ruta pública para GitHub Pages
-              },
-            },
             {
               loader: 'image-webpack-loader',
               options: {
@@ -46,11 +46,6 @@ module.exports = defineConfig({
                 },
                 gifsicle: {
                   interlaced: false,
-                },
-                svgo: {
-                  plugins: [
-                    { removeViewBox: false },
-                  ],
                 },
                 webp: {
                   quality: 75,

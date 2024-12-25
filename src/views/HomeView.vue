@@ -34,7 +34,7 @@
         setInterval(() => {
           this.currentIndex =
             (this.currentIndex + 1) % this.imagesArray.length;
-        }, 3000); // Cambia cada 3 segundos
+        }, 4000); // Cambia cada 3 segundos
       },
     },
   };
