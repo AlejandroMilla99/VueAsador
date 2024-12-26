@@ -5,7 +5,9 @@
       "reservations": "Reservations",
       "gallery": "Gallery",
       "contact": "Contact",
-      "about": "About us"
+      "about": "About us",
+      "explore": "Explore",
+      "close": "X"
     },
     "footer": {
       "poweredBy": "Powered by Alejandro Milla"

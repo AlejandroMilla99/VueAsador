@@ -274,6 +274,13 @@ button {
     font-size: 2rem;
   }
 
+  header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  }
+
   .container {
     padding: 0 0.5rem;
   }
