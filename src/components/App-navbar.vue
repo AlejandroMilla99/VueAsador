@@ -1,21 +1,23 @@
 <template>
   <nav class="navbar">
-    <!-- Cambiador de idioma -->
-    <img :src="images.fullLogo" alt="Email Icon" />
-    <div class="language-switcher">
-      <button
-        :class="{ active: currentLanguage === 'es' }"
-        @click="setLanguage('es')"
-      >
-        ES
-      </button>
-      <span>|</span>
-      <button
-        :class="{ active: currentLanguage === 'en' }"
-        @click="setLanguage('en')"
-      >
-        EN
-      </button>
+    <!-- Contenedor para el logo y el cambiador de idioma -->
+    <div class="logo-language-container">
+      <img :src="images.fullLogo" alt="Logo" class="navbarLogo" />
+      <div class="language-switcher">
+        <button
+          :class="{ active: currentLanguage === 'es' }"
+          @click="setLanguage('es')"
+        >
+          ES
+        </button>
+        <span>|</span>
+        <button
+          :class="{ active: currentLanguage === 'en' }"
+          @click="setLanguage('en')"
+        >
+          EN
+        </button>
+      </div>
     </div>
 
     <!-- Menú normal para dispositivos grandes -->
@@ -49,13 +51,13 @@
 </template>
 
 <script>
-import images from '../assets/images/images.js';
+import images from "../assets/images/images.js";
 export default {
   data() {
     return {
       currentLanguage: this.$i18n.locale, // Idioma actual
       isMenuOpen: false, // Estado del menú móvil
-      images
+      images,
     };
   },
   methods: {
@@ -74,10 +76,21 @@ export default {
 /* Estilos base */
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   background-color: #8b4513;
   padding: 10px 20px;
+  flex-direction: row;
+}
+
+/* Contenedor del logo y el cambiador de idioma */
+.logo-language-container {
+
+}
+
+.navbarLogo {
+  height: 135px;
+  object-fit: contain;
 }
 
 /* Cambiador de idioma */
@@ -85,9 +98,6 @@ export default {
   display: flex;
   align-items: center;
   gap: 5px;
-  position: absolute;
-  top: 10px;
-  left: 10px;
 }
 
 .language-switcher button {
@@ -180,24 +190,29 @@ export default {
 /* Reglas responsivas */
 @media (max-width: 768px) {
 
-  
-
-.navbar {
-  display: grid;
+  .navbar {
+  display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #8b4513;
   padding: 10px 20px;
+  flex-direction: column;
 }
 
   .menu-desktop {
     display: none;
   }
+
   .menu-mobile {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
+  }
+
+  .logo-language-container {
+    flex-direction: column; /* Cambia la dirección a columna en móvil */
+    align-items: center;
   }
 
   .language-switcher {
