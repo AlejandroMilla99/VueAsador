@@ -7,18 +7,18 @@
       const currentPath = window.location.pathname;
       const basePath = '/VueAsador/';
       
-      // Si ya estamos en el basePath, no redirigir
+      // Si estamos fuera del basePath, redirigir
       if (!currentPath.startsWith(basePath)) {
         const newUrl = basePath + currentPath.slice(1);
         window.location.replace(newUrl);
       } else {
-        // Si ya estamos en /VueAsador pero hay una ruta específica, redirigir al index manteniendo la ruta
+        // Si ya estamos en /VueAsador pero hay una ruta extra, redirigir al index.html con la ruta original
         const relativePath = currentPath.replace(basePath, ''); // Ruta después de /VueAsador/
         if (relativePath) {
-          const newUrl = basePath + '#/' + relativePath;
+          const newUrl = basePath + relativePath;
           window.location.replace(newUrl);
         } else {
-          // Si no hay ruta, redirigir simplemente al basePath
+          // Si no hay ruta, simplemente redirigir al basePath
           window.location.replace(basePath);
         }
       }
