@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-    <title>Redirecting...</title>
+    <meta http-equiv="refresh" content="0; url=/VueAsador/" />
     <script>
-      (function () {
-        const basePath = '/VueAsador/'; // Cambiar según el basePath del proyecto
-        const currentPath = window.location.pathname;
-
-        // Si ya estamos en el basePath o una ruta válida bajo él, no hacemos nada
-        if (currentPath.startsWith(basePath)) {
-          // No redirigimos si la página ya está correctamente ubicada
-          return;
+      // Redirige cualquier ruta rota hacia index.html, manteniendo la ruta original
+      const currentPath = window.location.pathname;
+      const basePath = '/VueAsador/';
+      
+      // Si ya estamos en el basePath, no redirigir
+      if (!currentPath.startsWith(basePath)) {
+        const newUrl = basePath + currentPath.slice(1);
+        window.location.replace(newUrl);
+      } else {
+        // Si ya estamos en /VueAsador pero hay una ruta específica, redirigir al index manteniendo la ruta
+        const relativePath = currentPath.replace(basePath, ''); // Ruta después de /VueAsador/
+        if (relativePath) {
+          const newUrl = basePath + '#/' + relativePath;
+          window.location.replace(newUrl);
+        } else {
+          // Si no hay ruta, redirigir simplemente al basePath
+          window.location.replace(basePath);
         }
-
-        // Si estamos fuera del basePath, redirigimos al index.html con la ruta original
-        const newPath = basePath + currentPath.slice(1);
-
-        // Redirigir preservando la ruta para Vue Router
-        window.location.replace(newPath);
-      })();
+      }
     </script>
   </head>
   <body></body>
