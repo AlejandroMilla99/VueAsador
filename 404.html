@@ -3,12 +3,16 @@
   <head>
     <meta http-equiv="refresh" content="0; url=/VueAsador/" />
     <script>
-      // Redirige cualquier ruta rota hacia index.html para Vue Router
-      window.location.replace(
-        '/VueAsador/' + window.location.pathname.slice(1)
-      );
+      // Redirige cualquier ruta rota hacia index.html para que Vue Router maneje las rutas
+      const currentPath = window.location.pathname;
+      const basePath = '/VueAsador/';
+      
+      // Verifica si la URL ya incluye el basePath
+      if (!currentPath.startsWith(basePath)) {
+        const newUrl = basePath + currentPath.slice(1);
+        window.location.replace(newUrl);
+      }
     </script>
   </head>
-  <body>
-  </body>
+  <body></body>
 </html>
