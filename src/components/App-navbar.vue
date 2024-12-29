@@ -1,8 +1,9 @@
 <template>
   <nav class="navbar">
     <!-- Contenedor para el logo y el cambiador de idioma -->
+    <img :src="images.fullLogo" alt="Logo" class="navbarLogo" />
+
     <div class="logo-language-container">
-      <img :src="images.fullLogo" alt="Logo" class="navbarLogo" />
       <!-- Menú normal para dispositivos grandes -->
       <ul class="menu-desktop">
         <li><router-link to="/home">{{ $t('header.home') }}</router-link></li>
@@ -119,7 +120,7 @@ export default {
 .navbarLogo {
   height: 95px;
   object-fit: contain;
-  right: 70%;
+  right: 25%;
   position: relative;
 }
 
@@ -128,6 +129,7 @@ export default {
   display: flex;
   align-items: center;
   gap: 5px;
+  left: 25%;
 }
 
 .language-switcher button {
@@ -148,6 +150,8 @@ export default {
   list-style: none;
   display: flex;
   gap: 40px;
+  left: auto;
+  position: relative;
 }
 
 .menu-desktop li a {
@@ -156,6 +160,10 @@ export default {
   font-weight: bold;
   transition: color 0.3s ease;
   font-size: 16px;
+}
+
+ul {
+  width: 605px;
 }
 
 .menu-desktop li a:hover {
@@ -282,12 +290,14 @@ export default {
   .language-switcher {
     position: static;
     margin-bottom: 10px;
+    left: 0;
   }
 
   .navbarLogo {
     height: 95px;
     object-fit: contain;
     right: auto;
+    right: 0;
   }
 }
 </style>
