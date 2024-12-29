@@ -3,49 +3,56 @@
     <!-- Contenedor para el logo y el cambiador de idioma -->
     <div class="logo-language-container">
       <img :src="images.fullLogo" alt="Logo" class="navbarLogo" />
-      <div class="language-switcher">
-        <button
-          :class="{ active: currentLanguage === 'es' }"
-          @click="setLanguage('es')"
-        >
-          ES
-        </button>
-        <span>|</span>
-        <button
-          :class="{ active: currentLanguage === 'en' }"
-          @click="setLanguage('en')"
-        >
-          EN
-        </button>
-      </div>
+      <!-- Menú normal para dispositivos grandes -->
+      <ul class="menu-desktop">
+        <li><router-link to="/home">{{ $t('header.home') }}</router-link></li>
+        <li><router-link to="/menu">{{ $t('header.menu') }}</router-link></li>
+        <li><router-link to="/reservations">{{ $t('header.reservations') }}</router-link></li>
+        <li><router-link to="/gallery">{{ $t('header.gallery') }}</router-link></li>
+        <li><router-link to="/contact">{{ $t('header.contact') }}</router-link></li>
+        <li><router-link to="/about">{{ $t('header.about') }}</router-link></li>
+      </ul>
     </div>
 
-    <!-- Menú normal para dispositivos grandes -->
-    <ul class="menu-desktop">
-      <li><router-link to="/home">{{ $t('header.home') }}</router-link></li>
-      <li><router-link to="/menu">{{ $t('header.menu') }}</router-link></li>
-      <li><router-link to="/reservations">{{ $t('header.reservations') }}</router-link></li>
-      <li><router-link to="/gallery">{{ $t('header.gallery') }}</router-link></li>
-      <li><router-link to="/contact">{{ $t('header.contact') }}</router-link></li>
-      <li><router-link to="/about">{{ $t('header.about') }}</router-link></li>
-    </ul>
+    <div class="language-switcher">
+      <button
+        :class="{ active: currentLanguage === 'es' }"
+        @click="setLanguage('es')"
+      >
+        ES
+      </button>
+      <span>|</span>
+      <button
+        :class="{ active: currentLanguage === 'en' }"
+        @click="setLanguage('en')"
+      >
+        EN
+      </button>
+    </div>
 
     <!-- Menú móvil -->
     <div class="menu-mobile">
       <button class="explore-button" @click="toggleMenu">
-        {{ isMenuOpen ? $t('header.close') : $t('header.explore') }}
+        {{ $t('header.explore') }}
       </button>
+    </div>
 
-      <transition name="slide-down">
-        <ul v-if="isMenuOpen" class="submenu">
-          <li><router-link to="/home">{{ $t('header.home') }}</router-link></li>
-          <li><router-link to="/menu">{{ $t('header.menu') }}</router-link></li>
-          <li><router-link to="/reservations">{{ $t('header.reservations') }}</router-link></li>
-          <li><router-link to="/gallery">{{ $t('header.gallery') }}</router-link></li>
-          <li><router-link to="/contact">{{ $t('header.contact') }}</router-link></li>
-          <li><router-link to="/about">{{ $t('header.about') }}</router-link></li>
-        </ul>
-      </transition>
+    <!-- Wrapper que aparece/desaparece -->
+    <div
+      v-if="isMenuTransitioning || isMenuOpen"
+      :class="['mobile-wrapper', { 'closing': isClosing }]"
+      @animationend="onAnimationEnd"
+      @click.self="closeMenu"
+    >
+      <button class="close-button" @click="closeMenu">X</button>
+      <ul class="mobile-menu">
+        <li><router-link to="/home" @click="closeMenu">{{ $t('header.home') }}</router-link></li>
+        <li><router-link to="/menu" @click="closeMenu">{{ $t('header.menu') }}</router-link></li>
+        <li><router-link to="/reservations" @click="closeMenu">{{ $t('header.reservations') }}</router-link></li>
+        <li><router-link to="/gallery" @click="closeMenu">{{ $t('header.gallery') }}</router-link></li>
+        <li><router-link to="/contact" @click="closeMenu">{{ $t('header.contact') }}</router-link></li>
+        <li><router-link to="/about" @click="closeMenu">{{ $t('header.about') }}</router-link></li>
+      </ul>
     </div>
   </nav>
 </template>
@@ -57,6 +64,8 @@ export default {
     return {
       currentLanguage: this.$i18n.locale, // Idioma actual
       isMenuOpen: false, // Estado del menú móvil
+      isMenuTransitioning: false, // Estado de la transición
+      isClosing: false, // Controla la animación de cierre
       images,
     };
   },
@@ -66,7 +75,25 @@ export default {
       this.currentLanguage = lang; // Actualiza el idioma activo
     },
     toggleMenu() {
-      this.isMenuOpen = !this.isMenuOpen; // Alterna el estado del menú
+      if (this.isMenuOpen) {
+        this.closeMenu();
+      } else {
+        this.isMenuOpen = true;
+        this.isMenuTransitioning = true;
+        document.body.style.overflow = "hidden"; // Bloquea el scroll
+      }
+    },
+    closeMenu() {
+      this.isClosing = true;
+      this.isMenuTransitioning = true;
+    },
+    onAnimationEnd() {
+      if (this.isClosing) {
+        this.isMenuOpen = false;
+        this.isClosing = false;
+        document.body.style.overflow = ""; // Reactiva el scroll al finalizar la animación
+      }
+      this.isMenuTransitioning = false;
     },
   },
 };
@@ -83,14 +110,17 @@ export default {
   flex-direction: row;
 }
 
-/* Contenedor del logo y el cambiador de idioma */
 .logo-language-container {
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .navbarLogo {
-  height: 135px;
+  height: 95px;
   object-fit: contain;
+  right: 70%;
+  position: relative;
 }
 
 /* Cambiador de idioma */
@@ -124,80 +154,113 @@ export default {
   color: white;
   font-weight: bold;
   transition: color 0.3s ease;
+  font-size: larger;
 }
 
 .menu-desktop li a:hover {
   color: #ffd700;
 }
 
-/* Menú móvil */
-.menu-mobile {
-  display: none;
+/* Wrapper para dispositivos móviles */
+.mobile-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  z-index: 1000;
+  animation: slide-in 0.3s forwards;
+  padding: 20px;
 }
 
-.explore-button {
+.mobile-wrapper.closing {
+  animation: slide-out 0.3s forwards;
+}
+
+.close-button {
+  align-self: flex-end;
   background: none;
   border: none;
   color: white;
+  font-size: 24px;
   font-weight: bold;
-  font-size: 16px;
   cursor: pointer;
+  margin-bottom: 20px;
 }
 
-.submenu {
+.mobile-menu {
   list-style: none;
-  padding: 0;
+  text-align: left;
+  width: auto;
+}
+
+.mobile-menu li {
   margin: 10px 0;
-  background-color: #8b4513;
-  border-top: 1px solid white;
   border-bottom: 1px solid white;
+  justify-content: center;
+  display: flex;
+  padding: 10px;
 }
 
-.submenu li {
-  text-align: center;
-  padding: 10px 0;
-}
-
-.submenu li a {
-  text-decoration: none;
+.mobile-menu li a {
   color: white;
+  font-size: 19px;
   font-weight: bold;
-  display: block;
-  transition: color 0.3s ease;
+  text-decoration: none;
 }
 
-.submenu li a:hover {
+.mobile-menu li a:hover {
   color: #ffd700;
 }
 
-/* Animación del submenú */
-.slide-down-enter-active,
-.slide-down-leave-active {
-  transition: max-height 0.3s ease-out;
+/* Animaciones */
+@keyframes slide-in {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 
-.slide-down-enter-from,
-.slide-down-leave-to {
-  max-height: 0;
-  overflow: hidden;
+@keyframes slide-out {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
 }
 
-.slide-down-enter-to,
-.slide-down-leave-from {
-  max-height: 300px; /* Ajusta según el contenido del submenú */
+.menu-mobile .explore-button {
+  display: none;
 }
 
 /* Reglas responsivas */
 @media (max-width: 768px) {
-
   .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #8b4513;
-  padding: 10px 20px;
-  flex-direction: column;
-}
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #8b4513;
+    padding: 10px 20px;
+    flex-direction: column;
+  }
+
+  .menu-mobile .explore-button {
+    background: none;
+    display: block;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+  }
 
   .menu-desktop {
     display: none;
@@ -211,13 +274,19 @@ export default {
   }
 
   .logo-language-container {
-    flex-direction: column; /* Cambia la dirección a columna en móvil */
+    flex-direction: column;
     align-items: center;
   }
 
   .language-switcher {
     position: static;
     margin-bottom: 10px;
+  }
+
+  .navbarLogo {
+    height: 95px;
+    object-fit: contain;
+    right: auto;
   }
 }
 </style>
