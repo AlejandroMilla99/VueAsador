@@ -136,6 +136,7 @@ export default {
   color: white;
   font-weight: bold;
   cursor: pointer;
+  font-size: 16px;
 }
 
 .language-switcher .active {
@@ -154,7 +155,7 @@ export default {
   color: white;
   font-weight: bold;
   transition: color 0.3s ease;
-  font-size: larger;
+  font-size: 16px;
 }
 
 .menu-desktop li a:hover {
