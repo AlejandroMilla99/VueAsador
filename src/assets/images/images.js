@@ -5,6 +5,7 @@ export const images = {
     logo: require('./logo.png'),
     fullLogo: require('./fullLogo.png'),
     mail: require('./mail.png'),
+    bg: require('./bg.gif'),
     bg1: require('./bg1.jpg'),
     bg2: require('./bg2.webp'),
     bg3: require('./bg3.jpg'),
@@ -14,4 +15,3 @@ export const images = {
   
   // Exportamos por defecto para facilitar el uso en otros módulos
   export default images;
-  

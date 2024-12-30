@@ -39,6 +39,7 @@ ul {
 
 main {
   flex: 1; /* Se asegura de que el contenido principal ocupe el espacio restante */
+  background-image: url(../images/bg.gif);
 }
 
 /* === Footer === */
@@ -258,9 +259,6 @@ button {
 .icon {
   position: relative;
   width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 
