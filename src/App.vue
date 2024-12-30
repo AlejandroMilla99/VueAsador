@@ -67,7 +67,32 @@ main {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  
+  /* Imagen de fondo */
+  background-image: url(./assets/images/bg.gif);
+  background-position: left; /* Centra la imagen */
+  background-size: cover; /* Asegura que cubra todo el espacio disponible */
+  background-repeat: no-repeat; /* Evita repeticiones */
+
+  /* Superposición oscura */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Oscuridad con transparencia */
+    z-index: 1; /* Sitúa la superposición debajo del contenido */
+  }
+
+  /* Contenido principal */
+  > * {
+    position: relative; /* Asegura que el contenido no quede afectado por el ::before */
+    z-index: 2; /* Por encima de la superposición */
+  }
 }
+
 
 footer {
   z-index: 10; /* Mantén el footer por encima del slider */
