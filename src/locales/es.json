@@ -18,9 +18,12 @@
     "description": "I am Alejandro Milla Ramírez, I was born in Málaga and since I was a child I have been interested in the world of computers and the Internet, making them part of my hobbies. That is why, later, I decided to study a double degree in Computer Engineering and Business Management at Universidad Complutense in Madrid. During my degree I realized that programming aroused great interest in me, leading me to research new technologies to create intuitive and efficient solutions. With experience in mobile and web application development, I specialize in building attractive and functional interfaces using modern technologies such as React, Swift and Python, with which I currently develop my work life.",
     "book": "Reserva ahora"
   },
-  "menuPage": {
-    "title": "My Projects",
-    "description": "Apart from this website using React, this section compiles some of the projects that I have been working on during these years in which I have been developing my interest in programming and learning new technologies."
+  "contact": {
+    "title": "Información de contacto",
+    "mail": "Email:",
+    "phone": "Teléfono:",
+    "location": "Ubicación:",
+    "social": "Redes sociales"
   },
   "bookPage": {
     "title": "Curriculum Vitae",

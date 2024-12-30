@@ -8,18 +8,18 @@
       <div class="contact-info">
         <div class="info-item">
           <i class="fas fa-envelope icon"></i>
-          <p>Email:</p>
+          <p>{{ $t('contact.mail') }}</p>
           <a href="mailto:info@asadorguadalmina.com">info@asadorguadalmina.com</a>
         </div>
         <div class="info-item">
           <i class="fas fa-phone-alt icon"></i>
-          <p>Teléfono:</p>
-          <a href="tel:+34951123456">+34 951 123 456</a>
+          <p>{{ $t('contact.phone') }}</p>
+          <a href="tel:+34952883003">+34 952 883 003</a>
         </div>
         <div class="info-item">
           <i class="fas fa-map-marker-alt icon"></i>
-          <p>Ubicación:</p>
-          <span class="spanUbi">Centro Comercial Guadalmina III Urb. Guadalmina Alta, Local 3, 29670 San Pedro Alcántara, Málaga</span>
+          <p>{{ $t('contact.location') }}</p>
+          <span class="spanUbi"><a href="https://maps.app.goo.gl/p7NJLk2iAox7TLV47" target="_blank">Centro Comercial Guadalmina III Urb. Guadalmina Alta, Local 3, 29670 San Pedro Alcántara, Málaga</a></span>
         </div>
       </div>
 
@@ -30,9 +30,9 @@
 
       <!-- Redes Sociales -->
       <div class="social-section">
-        <h2>{{ $t('contact.followUs') }}</h2>
+        <h2 style="margin-top: 20px;">{{ $t('contact.social') }}</h2>
         <div class="social-icons">
-          <a href="https://www.facebook.com" target="_blank" class="social-icon">
+          <a href="https://www.facebook.com/@asadorguadalmina/" target="_blank" class="social-icon">
             <i class="fab fa-facebook-f"></i>
           </a>
           <a href="https://www.instagram.com" target="_blank" class="social-icon">
@@ -60,7 +60,7 @@ export default {
 }
 
 .section-title {
-  font-size: 2.5rem;
+  font-size: 29px;
   margin-bottom: 2rem;
 }
 
@@ -83,27 +83,37 @@ export default {
 }
 
 .info-item a {
-  color: primary-color;
+  color: #FFD700;
   font-size: 1rem;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .info-item a:hover {
-  color: mix(primary-color, black, 10%);
+  color: wheat;
 }
 
 .icon {
   font-size: 2rem;
-  color: secondary-color;
+  color: wheat;
   margin-bottom: 1rem;
 }
 
+p {
+  color: wheat;
+}
+
 .map-container {
-  margin: 2rem 0;
-  border: 2px solid primary-color;
+  margin: 2rem auto; /* Centra el mapa */
+  border: 2px solid #FFD700;
   border-radius: 8px;
   overflow: hidden;
+  max-width: 100%; /* Asegura que no se salga del contenedor */
+  
+  iframe {
+    width: 100%; /* Ajusta el ancho al contenedor */
+    height: 450px; /* Mantiene una altura fija */
+  }
 }
 
 .social-section h2 {
@@ -119,17 +129,18 @@ export default {
 
 .social-icon {
   font-size: 2rem;
-  color: primary-color;
+  color: #FFD700;
   transition: color 0.3s ease;
 }
 
 .social-icon:hover {
-  color: secondary-color;
+  color: wheat;
 }
 
 .spanUbi {
   width: 260px;
   display: inline-flex;
+  color: #FFD700;
 }
 
 /* Responsivo */
@@ -142,5 +153,16 @@ export default {
   .info-item {
   flex: auto;
 }
+
+.map-container {
+    width: 90%; /* Ajusta el mapa al 90% del ancho de la pantalla */
+    max-width: 400px; /* Define un límite máximo para el ancho */
+    margin: 1rem auto; /* Agrega un margen más pequeño en dispositivos móviles */
+  }
+
+  .map-container iframe {
+    height: 275px; /* Reduce la altura del iframe en móviles */
+    width: 275px;
+  }
 }
 </style>

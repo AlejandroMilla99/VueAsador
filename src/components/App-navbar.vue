@@ -209,16 +209,18 @@ ul {
 }
 
 .mobile-menu li {
-  margin: 10px 0;
-  border-bottom: 1px solid white;
-  justify-content: center;
-  display: flex;
-  padding: 10px;
+    width: 220px;
+    margin: 10px 0;
+    border-bottom: 1px solid white;
+    justify-content: center;
+    display: flex;
+    padding: 7px;
+    border-radius: 15px;
 }
 
 .mobile-menu li a {
   color: white;
-  font-size: 19px;
+  font-size: 18px;
   font-weight: bold;
   text-decoration: none;
 }
