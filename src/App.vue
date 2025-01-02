@@ -82,7 +82,7 @@ main {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Oscuridad con transparencia */
+    background-color: rgba(0, 0, 0, 0.6); /* Oscuridad con transparencia */
     z-index: 1; /* Sitúa la superposición debajo del contenido */
   }
 
