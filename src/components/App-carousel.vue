@@ -164,32 +164,52 @@ export default {
 @media (max-width: 768px) {
   .carousel-image {
     flex: 0 0 100%;
-    transform: scale(1);
+    transform: scale(0.8); /* Mantiene una escala similar a la de escritorio */
+    opacity: 0.5;
+    position: absolute;
+    transition: all 1s ease;
+  }
+
+  .carousel-image.active {
+    transform: scale(1.1);
     opacity: 1;
+    z-index: 2;
     position: relative;
   }
+
+  .carousel-image.left {
+    transform: translateX(-120%) scale(0.6); /* Ajuste menor en móviles */
+    z-index: 1;
+    opacity: 0.5;
+  }
+
+  .carousel-image.right {
+    transform: translateX(120%) scale(0.6);
+    z-index: 1;
+    opacity: 0.5;
+  }
+
   .image-wrapper {
-  width: 100%;
-  height: 300px; /* Altura fija para todas las imágenes */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  border-radius: 10px;
-}
-  .carousel-image:not(.active) {
-    display: none;
+    width: 100%;
+    height: 300px; /* Altura ajustada para móviles */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 10px;
   }
+
   .carousel-button.left-button {
-    left: -4%;
+    left: 2%;
   }
+
   .carousel-button.right-button {
-    right: -4%;
+    right: 2%;
   }
 
   .carousel-button:hover {
-  background-color: rgba(139, 69, 19, 0.5);
-}
-
+    background-color: rgba(139, 69, 19, 0.8);
+  }
 }
 </style>
+
